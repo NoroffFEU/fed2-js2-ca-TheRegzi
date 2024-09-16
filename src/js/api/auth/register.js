@@ -3,6 +3,6 @@ export async function register({
   email,
   password,
   bio,
-  banner,
   avatar,
 }) {}
+
