@@ -20,10 +20,6 @@ export async function register({
       })
     });
 
-    console.log('Response status:', response.status);
-    console.log('Response OK:', response.ok);
-
-
     if (!response.ok) {
       const errorData = await response.json();
       console.error('Full error response:', errorData);

@@ -11,9 +11,6 @@ export async function login({ email, password }) {
         })
       });
   
-      console.log('Response status:', response.status);
-      console.log('Response OK:', response.ok);
-  
       if (!response.ok) {
         const errorData = await response.json();
         const errorMessage = errorData.errors?.[0]?.message || errorData.message || 'Login failed';

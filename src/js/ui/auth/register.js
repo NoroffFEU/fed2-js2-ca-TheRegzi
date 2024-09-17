@@ -17,21 +17,13 @@ export async function onRegister(event) {
     password: password,
     bio: bio || undefined,
     avatar: avatarUrl ? { url: avatarUrl, alt: avatarAlt || '' } : undefined,
-    
   };
 
-  console.log('Registration Data:', registrationData);
-
   try {
-    // Call the register function
     const response = await register(registrationData);
-    
-    // Since the request was successful if we reach this point, show success message
     alert('Registration successful!');
     window.location.href = '/auth/login/';
-    
   } catch (error) {
-    // Handle errors thrown by the register function
     console.error("Registration error:", error);
     alert(error.message);
   }

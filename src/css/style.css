@@ -1,1 +1,31 @@
 @import url(_reset.css);
+
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+header,
+footer {
+    background-color: antiquewhite;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+
+.logo {
+    width: 75px;
+}
+
