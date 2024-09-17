@@ -61,3 +61,93 @@ footer {
 }
 
 
+#hamburger-content a {
+    margin-left: 1.5em;
+}
+
+#hamburger-content button {
+    margin: 0.5em 2.1em 0em;
+}
+
+.hamburger-menu #hamburger-button {
+    font-size: 40px;
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.hamburger-menu a {
+    display: block;
+    padding: 0.6em;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+    position: absolute;
+    background-color: antiquewhite;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    left: 0;
+    top: 100px;
+    width: 100%;
+    margin: 0em;
+    padding: 2em 0em;
+    z-index: 100;
+}
+
+@media (min-width: 755px) {
+
+    
+    .hamburger-menu #hamburger-button {
+        display: none;
+    }
+    
+    .hamburger-menu a {
+        display: block;
+        font-size: 1.2em;
+    }
+
+    #hamburger-content {
+        display: flex;  
+        flex-direction: row;  
+        justify-content: center;
+        align-items: center;
+        width: 100%;  
+        box-shadow: none;  
+        position: static;  
+        padding: 1em 0;  
+        gap: 2em;
+        margin: 0 auto;
+    }
+
+    #hamburger-content a {
+        display: block;
+        padding-right: 2em;
+    }
+    
+    .hidden {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 1.2em 2em 0 0;
+        gap: 2.5em;
+    }
+    
+    .visible {
+        display: none;
+        padding: 0;
+    }
+
+    .heading {
+        font-size: 2.2em;
+    }
+}
+

@@ -16,8 +16,14 @@
     <a href="/index.html"><img src="/favicon_io (10)/android-chrome-512x512.png" alt="SnapGram Logo" class="logo"></a>
   </div>
   <nav>
-    <a href="/profile/">My Profile</a>
-    <button id="logOut">Logout</button>
+    <div class="hamburger-menu">
+      <button id="hamburger-button" aria-label="Menu button"><i class="fa-solid fa-bars"></i></button>
+      <div id="hamburger-content" class="hidden">
+        <a href="/profile/">My Profile</a>
+        <a href="/post/create/">Create Post</a>
+        <button id="logOut">Logout</button>
+      </div>
+    </div>
   </nav>
 </header>
 <main>
