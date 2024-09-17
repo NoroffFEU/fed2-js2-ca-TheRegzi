@@ -23,9 +23,19 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0.5em;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a,
+header {
+    text-decoration: none;
+    color: #000000;
 }
 
 .logo {
     width: 75px;
 }
 
+.heading {
+    font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
+}
