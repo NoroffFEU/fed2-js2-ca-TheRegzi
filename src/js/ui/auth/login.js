@@ -21,7 +21,7 @@ export async function onLogin(event) {
       localStorage.setItem('name', name);
 
       alert('Login successful!');
-      window.location.href = '/'; 
+      window.location.href = '/index.html'; 
     } else {
       console.log('User Token not found in response:', response);
       alert('Login failed: Token not found.');

@@ -6,10 +6,6 @@ await router(window.location.pathname);
 
 import { initializeLogout } from './js/ui/global/logout';
 
-document.addEventListener('DOMContentLoaded', () => {
-    initializeLogout(); 
-});
-
 document.getElementById('hamburger-button').addEventListener('click', function() {
     var content = document.getElementById('hamburger-content');
     if (content.classList.contains('hidden')) {
@@ -21,3 +17,4 @@ document.getElementById('hamburger-button').addEventListener('click', function()
     }
 });
 
+initializeLogout(); 
