@@ -7,9 +7,9 @@
   <link rel="icon" href="/favicon_io (10)/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&family=Raleway:wght@100..900&family=Source+Sans+3:wght@200..900&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/878e5c0278.js" crossorigin="anonymous"></script>
-  <script type="module" src="/src/app.js"></script>
+  <link rel="stylesheet" href="/src/css/style.css">
 </head>
 <body>
 <header>
@@ -30,28 +30,35 @@
 <main>
   <h1 class="heading">Add a new post!</h1>
   <div class="create-post-section">
-    <form id="create-form" method="POST" enctype="multipart/form-data">
+    <form id="create-form" name="create-form">
       <div class="form-group">
         <label for="title">Add a title</label>
-        <input type="text" name="title" id="title" placeholder="Enter title">
+        <input type="text" name="title" id="title" placeholder="Enter title" required>
       </div>
       <div class="form-group">
         <label for="body">Add a description</label>
-        <textarea name="body" id="body" placeholder="Enter description" rows="3"></textarea>
+        <textarea name="body" id="body" placeholder="Enter description" rows="3" required></textarea>
       </div>
       <div class="form-group">
         <label for="post-image">Add an image</label>
-        <input type="url" id="post-image" name="post-image" placeholder="Enter Image URL">
+        <input type="url" id="post-image" name="post-image" placeholder="Enter Image URL" required>
+      </div>
+      <div class="form-group">
+        <label for="tags">Tags (separated by commas)</label>
+        <input type="text" id="tags" name="tags" placeholder="Enter Tags">
       </div>
       <button type="submit" id="submit-post">Create Post</button>
     </form>
   </div>
 </main>
 <footer>
-<div>
+  <div>
     <p>&copy; 2024 SnapGram, Inc.</p>
     <p>All rights reserved</p>
-</div>
+  </div>
 </footer>
+
+<!-- Main script to handle routing and initialization -->
+<script type="module" src="/src/app.js"></script>
 </body>
 </html>

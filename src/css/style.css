@@ -109,13 +109,13 @@ footer {
     align-items: center;
     border: 2px solid #000000;
     border-radius: 10px;
-    width: 70%;
-    padding: 1em;
+    width: 90%;
+    padding: 0.5em;
 
 }
 
 #create-form {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -124,7 +124,7 @@ footer {
 .form-group {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     padding: 1em;
 }
 
@@ -144,12 +144,13 @@ textarea {
 
 #submit-post {
     background-color: #428E9E;
+    color: #ffffff;
     border: none;
     border-radius: 30px;
     padding: 1em;
     font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1em;
-    font-weight: 550;
+    font-size: 1.2em;
+    font-weight: 500;
     margin: 1em;
 }
 
@@ -201,5 +202,25 @@ textarea {
     .heading {
         font-size: 2.2em;
     }
+
+    .create-post-section {
+        display: flex;
+        flex-direction: column;
+        margin: 3em auto;
+        align-items: center;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        width: 60%;
+        padding: 0.5em;
+    
+    }
+    
+    #create-form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
 }
 
