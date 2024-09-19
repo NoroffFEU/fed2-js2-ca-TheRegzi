@@ -2,7 +2,7 @@ export default async function router(pathname = window.location.pathname) {
   console.log(`Routing to: ${pathname}`);
   try {
       switch (pathname) {
-          case "/index.html":
+          case "/index.html" || "/":
               await import("./views/home.js");
               console.log('Loaded home.js');
               break;
