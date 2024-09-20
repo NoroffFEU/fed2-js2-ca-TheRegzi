@@ -1,8 +1,6 @@
-alert("Single Post Page");
+import { fetchSinglePost } from "../../api/post/read";
 
-import { readPost } from "../../api/post/read";
-import { readPostsByUser } from "../../api/post/read";
 
-readPost();
+fetchSinglePost();
 
 

@@ -1,8 +1,14 @@
 import { getKey } from '../auth/key.js'; 
 
-export async function readPost(id) {
-    const apiUrl = `https://v2.api.noroff.dev/social/posts/${id}`;
-    const userToken = localStorage.getItem('userToken'); 
+export async function fetchSinglePost() {
+    const postId = new URLSearchParams(window.location.search).get('id'); 
+    if (!postId) {
+        console.error('Post ID not found in the URL');
+        return;
+    }
+
+    const apiUrl = `https://v2.api.noroff.dev/social/posts/${postId}?_author=true`;
+    const userToken = localStorage.getItem('userToken');
 
     if (!userToken) {
         throw new Error('User is not authenticated');
@@ -10,7 +16,7 @@ export async function readPost(id) {
 
     let apiKey;
     try {
-        apiKey = await getKey('My API Key Name'); 
+        apiKey = await getKey('My API Key Name');
     } catch (error) {
         console.error('Failed to retrieve API key:', error);
         throw new Error('Failed to retrieve API key');
@@ -21,8 +27,8 @@ export async function readPost(id) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`, 
-                'X-Noroff-API-Key': apiKey 
+                'Authorization': `Bearer ${userToken}`,
+                'X-Noroff-API-Key': apiKey
             },
         });
 
@@ -31,12 +37,43 @@ export async function readPost(id) {
         }
 
         const post = await response.json();
-        addPostsToHTML(posts.data || posts);
-        return post; 
+        displaySinglePost(post);
     } catch (error) {
         console.error('Failed to fetch the post:', error);
-        throw error; 
     }
+}
+
+function displaySinglePost(post) {
+    console.log(post);
+    const container = document.getElementById('single-post-container');
+    container.innerHTML = ''; 
+
+    const postElement = document.createElement('div');
+    postElement.classList.add('post');
+
+    const title = document.createElement('h2');
+    title.textContent = post.data.title;
+
+    const content = document.createElement('p');
+    content.textContent = post.data.body;
+
+    if (post.data.media && post.data.media.url) {
+        const image = document.createElement('img');
+        image.src = post.data.media.url;
+        image.alt = post.data.media.alt || post.data.title;
+        image.classList.add('post-image');
+        postElement.appendChild(image);
+    }
+
+    const username = document.createElement('p');
+    username.textContent = `Posted by: ${post.data.author.name || 'Unknown'}`;
+    username.classList.add('post-username');
+
+    postElement.appendChild(title);
+    postElement.appendChild(username);
+    postElement.appendChild(content);
+
+    container.appendChild(postElement);
 }
 
 
@@ -140,10 +177,6 @@ function addPostsToHTML(posts) {
     container.innerHTML = ''; 
 
     posts.forEach(post => {
-
-        if (!post.media || typeof post.media !== 'object' || !post.media.url) {
-            return; 
-        }
        
         const postLink = document.createElement('a');
         postLink.href = `post/index.html?id=${post.id}`; 
@@ -164,8 +197,8 @@ function addPostsToHTML(posts) {
             image.alt = post.media.alt; 
             image.classList.add('post-image');
             postElement.appendChild(image); 
-        }
-
+        } 
+        
         const username = document.createElement('p');
         username.textContent = `Posted by: ${post.author.name || 'Unknown'}`; 
         username.classList.add('post-username');

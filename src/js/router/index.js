@@ -2,7 +2,8 @@ export default async function router(pathname = window.location.pathname) {
   console.log(`Routing to: ${pathname}`);
   try {
       switch (pathname) {
-          case "/index.html" || "/":
+          case "/index.html":
+          case "/":
               await import("./views/home.js");
               console.log('Loaded home.js');
               break;
@@ -18,10 +19,11 @@ export default async function router(pathname = window.location.pathname) {
               await import("./views/register.js");
               console.log('Loaded register.js');
               break;
-          case "/post/":
-              await import("./views/post.js");
-              console.log('Loaded post.js');
-              break;
+            case "/post/":
+            case "/post/index.html": 
+                await import("./views/post.js");
+                console.log('Loaded post.js');
+                break;
           case "/post/edit/":
               await import("./views/postEdit.js");
               console.log('Loaded postEdit.js');
