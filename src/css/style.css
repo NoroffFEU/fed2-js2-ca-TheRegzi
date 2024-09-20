@@ -175,6 +175,10 @@ textarea {
     cursor: pointer;
 }
 
+#login {
+    width: 350px;
+}
+
 
 @media (min-width: 755px) {
 
@@ -248,7 +252,6 @@ textarea {
     }
 
     .post {
-        
         width: 600px;
         margin: 1em auto;
         padding: 1.5em;
@@ -257,6 +260,10 @@ textarea {
     
     .post-image {
         width: 550px;
+    }
+
+    #login {
+        width: 400px;
     }
     
 }

@@ -7,7 +7,5 @@ export function onLogout() {
             localStorage.removeItem('name');
             window.location.href = '/auth/login/';
         });
-    } else {
-        console.error('Log out button not found');
-    }
+    } 
 }
