@@ -175,7 +175,8 @@ textarea {
     cursor: pointer;
 }
 
-#login {
+#login,
+#register {
     width: 350px;
 }
 
