@@ -24,7 +24,8 @@ export default async function router(pathname = window.location.pathname) {
                 await import("./views/post.js");
                 console.log('Loaded post.js');
                 break;
-          case "/post/edit/":
+            case "/post/edit/":
+            case "/post/edit/index.html":
               await import("./views/postEdit.js");
               console.log('Loaded postEdit.js');
               break;

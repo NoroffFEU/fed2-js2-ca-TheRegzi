@@ -1,4 +1,5 @@
 import { getKey } from '../auth/key.js'; 
+import { deletePost } from './delete.js';
 
 export async function fetchSinglePost() {
     const postId = new URLSearchParams(window.location.search).get('id'); 
@@ -73,8 +74,34 @@ function displaySinglePost(post) {
     postElement.appendChild(username);
     postElement.appendChild(content);
 
+    const loggedInUser = localStorage.getItem('name'); 
+    if (loggedInUser === post.data.author.name) {  
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.classList.add('edit-button');
+    editButton.onclick = function() {
+        window.location.href = `/post/edit/index.html?id=${post.data.id}`; 
+    };
+    
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button');
+    deleteButton.onclick = function() {
+        const confirmed = confirm('Are you sure you want to delete this post?');
+        if (confirmed) {
+            console.log('Deleting post with ID:', post.data.id);
+            deletePost(post.data.id); 
+        }
+    };
+
+    postElement.appendChild(editButton);
+    postElement.appendChild(deleteButton);
+     
+}
+
     container.appendChild(postElement);
 }
+
 
 
 export async function readPosts(limit = 12, page = 1, tag) {
