@@ -1,4 +1,5 @@
 import { headers } from "../headers";
+import { API_SOCIAL_POSTS } from "../constants.js";
 import { deletePost } from './delete.js';
 
 export async function fetchSinglePost() {
@@ -7,7 +8,7 @@ export async function fetchSinglePost() {
         console.error('Post ID not found in the URL');
         return;
     }
-    const apiUrl = `https://v2.api.noroff.dev/social/posts/${postId}?_author=true`;
+    const apiUrl = `${API_SOCIAL_POSTS}/${postId}?_author=true`;
 
     try {
         const requestHeaders = await headers();
@@ -78,16 +79,12 @@ function displaySinglePost(post) {
 
     postElement.appendChild(editButton);
     postElement.appendChild(deleteButton);
-     
 }
-
     container.appendChild(postElement);
 }
 
-
-
 export async function readPosts(limit = 12, page = 1, tag) {
-    const apiUrl = 'https://v2.api.noroff.dev/social/posts';
+    const apiUrl = API_SOCIAL_POSTS;
 
     try {
         const url = new URL(apiUrl);
@@ -95,8 +92,8 @@ export async function readPosts(limit = 12, page = 1, tag) {
         url.searchParams.append('page', page);
         if (tag) {
             url.searchParams.append('tag', tag);
-        }
-        url.searchParams.append('_author', 'true');
+        } url.searchParams.append('_author', 'true');
+
         const requestHeaders = await headers();
         const response = await fetch(url, {
             method: 'GET',
@@ -116,34 +113,34 @@ export async function readPosts(limit = 12, page = 1, tag) {
     }
 }
 
-export async function readPostsByUser(username, limit = 12, page = 1, tag) {
-    const apiUrl = `https://v2.api.noroff.dev/social/users/${username}/posts`;
+// export async function readPostsByUser(username, limit = 12, page = 1, tag) {
+//     const apiUrl = `https://v2.api.noroff.dev/social/users/${username}/posts`;
 
-    try {
-        const url = new URL(apiUrl);
-        url.searchParams.append('limit', limit);
-        url.searchParams.append('page', page);
-        if (tag) {
-            url.searchParams.append('tag', tag);
-        }
-        const requestHeaders = await headers();
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: requestHeaders
-        });
+//     try {
+//         const url = new URL(apiUrl);
+//         url.searchParams.append('limit', limit);
+//         url.searchParams.append('page', page);
+//         if (tag) {
+//             url.searchParams.append('tag', tag);
+//         }
+//         const requestHeaders = await headers();
+//         const response = await fetch(url, {
+//             method: 'GET',
+//             headers: requestHeaders
+//         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//         }
 
-        const posts = await response.json();
-        addPostsToHTML(posts.data || posts); 
-        return posts;
-    } catch (error) {
-        console.error('Failed to fetch posts by user:', error);
-        throw error;
-    }
-}
+//         const posts = await response.json();
+//         addPostsToHTML(posts.data || posts); 
+//         return posts;
+//     } catch (error) {
+//         console.error('Failed to fetch posts by user:', error);
+//         throw error;
+//     }
+// }
 
 function addPostsToHTML(posts) {
     const container = document.getElementById('posts-container');
@@ -175,13 +172,11 @@ function addPostsToHTML(posts) {
         const username = document.createElement('p');
         username.textContent = `Posted by: ${post.author.name || 'Unknown'}`; 
         username.classList.add('post-username');
-
         
         postElement.appendChild(username);
         postElement.appendChild(title);
         postElement.appendChild(content);
 
-        
         postLink.appendChild(postElement);
 
         container.appendChild(postLink);
