@@ -1,8 +1,9 @@
 import { headers } from "../headers";
+import { API_SOCIAL_POSTS } from "../constants";
 
 export async function deletePost(id) {
     const postId = new URLSearchParams(window.location.search).get('id');
-    const apiUrl = `https://v2.api.noroff.dev/social/posts/${postId}`;
+    const apiUrl = `${API_SOCIAL_POSTS}/${postId}`;
     
     try {
         const requestHeaders = await headers();
