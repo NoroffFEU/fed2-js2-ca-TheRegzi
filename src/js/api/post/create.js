@@ -1,14 +1,13 @@
 import { headers } from "../headers";
+import { API_SOCIAL_POSTS } from "../constants";
 
 export async function createPost(formData) {
     
-    const apiUrl = 'https://v2.api.noroff.dev/social/posts';
+    const apiUrl = API_SOCIAL_POSTS;
     const title = formData.get('title');
     const body = formData.get('body');
     const media = formData.get('post-image');
     const tags = formData.get('tags').split(',').map(tag => tag.trim());
-
-    console.log('Creating post with data:', { title, body, media, tags });
 
     try {
         const requestHeaders = await headers();
