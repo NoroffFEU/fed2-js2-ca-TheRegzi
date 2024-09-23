@@ -1,10 +1,19 @@
-import { API_KEY } from "./constants";
+import { getKey } from "./auth/key";
 
-export function headers() {
+export async function headers() {
   const headers = new Headers();
+ 
+  const apiKey = await getKey('My API Key Name'); 
+  const userToken = localStorage.getItem('userToken');
 
-  if (API_KEY) {
-    headers.append("X-Noroff-API-Key", API_KEY);
+  headers.append('Content-Type', 'application/json');
+
+  if (apiKey) {
+    headers.append('X-Noroff-API-Key', apiKey);
+  }
+
+  if (userToken) {
+    headers.append('Authorization', `Bearer ${userToken}`);
   }
 
   return headers;

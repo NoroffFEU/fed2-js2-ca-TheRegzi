@@ -1,17 +1,14 @@
-import { getKey } from "../auth/key";
+import { headers } from "../headers";
 
 export async function deletePost(id) {
     const postId = new URLSearchParams(window.location.search).get('id');
-    const userToken = localStorage.getItem('userToken'); 
     const apiUrl = `https://v2.api.noroff.dev/social/posts/${postId}`;
-    const apiKey = await getKey('My API Key Name');
+    
     try {
+        const requestHeaders = await headers();
         const response = await fetch(apiUrl, {
             method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${userToken}`,
-                'X-Noroff-API-Key': apiKey
-            },
+            headers: requestHeaders
         });
         
         if (response.status === 204) {

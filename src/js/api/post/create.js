@@ -1,20 +1,7 @@
-import { getKey } from '../auth/key.js'; 
+import { headers } from "../headers";
 
 export async function createPost(formData) {
-    const userToken = localStorage.getItem('userToken');
-
-    if (!userToken) {
-        throw new Error('User is not authenticated');
-    }
-
-    let apiKey;
-    try {
-        apiKey = await getKey('My API Key Name'); 
-    } catch (error) {
-        console.error('Failed to retrieve API key:', error);
-        throw new Error('Failed to retrieve API key');
-    }
-
+    
     const apiUrl = 'https://v2.api.noroff.dev/social/posts';
     const title = formData.get('title');
     const body = formData.get('body');
@@ -24,13 +11,10 @@ export async function createPost(formData) {
     console.log('Creating post with data:', { title, body, media, tags });
 
     try {
+        const requestHeaders = await headers();
         const response = await fetch(apiUrl, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`, 
-                'X-Noroff-API-Key': apiKey 
-            },
+            headers: requestHeaders,
             body: JSON.stringify({
                 title: title, 
                 body: body || '', 
