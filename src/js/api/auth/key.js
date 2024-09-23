@@ -1,12 +1,13 @@
+import { API_AUTH_KEY } from "../constants";
+
 export async function getKey(name) {
   const userToken = localStorage.getItem('userToken');
 
   if (!userToken) {
     throw new Error('User is not authenticated');
-}
-
+  } 
     try {
-        const response = await fetch('https://v2.api.noroff.dev/auth/create-api-key', {
+        const response = await fetch(API_AUTH_KEY, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
