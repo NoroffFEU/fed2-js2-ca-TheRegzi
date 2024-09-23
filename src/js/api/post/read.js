@@ -45,7 +45,6 @@ export async function fetchSinglePost() {
 }
 
 function displaySinglePost(post) {
-    console.log(post);
     const container = document.getElementById('single-post-container');
     container.innerHTML = ''; 
 
@@ -143,7 +142,6 @@ export async function readPosts(limit = 12, page = 1, tag) {
         }
 
         const posts = await response.json();
-        console.log(posts);
         addPostsToHTML(posts.data || posts);
         return posts; 
     } catch (error) {
