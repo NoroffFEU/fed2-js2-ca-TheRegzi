@@ -1,7 +1,8 @@
 import { headers } from "../headers";
+import { API_SOCIAL_POSTS } from "../constants";
 
 export async function getPost(id) {
-    const apiUrl = `https://v2.api.noroff.dev/social/posts/${id}`;
+    const apiUrl = `${API_SOCIAL_POSTS}/${id}`;
 
     try {
         const requestHeaders = await headers();
@@ -29,7 +30,7 @@ export async function getPost(id) {
 }
 
 export async function updatePost(id, { title, body, tags, media }) {
-    const apiUrl = `https://v2.api.noroff.dev/social/posts/${id}`;
+    const apiUrl = `${API_SOCIAL_POSTS}/${id}`;
 
     try {
         const requestHeaders = await headers();
