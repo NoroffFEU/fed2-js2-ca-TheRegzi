@@ -1,20 +1,13 @@
-
-import { getKey } from "../auth/key";
-
-const apiKey = await getKey('My API Key Name');
+import { headers } from "../headers";
 
 export async function getPost(id) {
     const apiUrl = `https://v2.api.noroff.dev/social/posts/${id}`;
-    const userToken = localStorage.getItem('userToken');
 
     try {
+        const requestHeaders = await headers();
         const response = await fetch(apiUrl, {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`,
-                'X-Noroff-API-Key': apiKey
-            }
+            headers: requestHeaders
         });
 
         if (!response.ok) {
@@ -35,21 +28,15 @@ export async function getPost(id) {
     }
 }
 
-
 export async function updatePost(id, { title, body, tags, media }) {
     const apiUrl = `https://v2.api.noroff.dev/social/posts/${id}`;
-    const userToken = localStorage.getItem('userToken');
-
-    console.log("Updating post with data:", { title, body, tags, media });
 
     try {
+        const requestHeaders = await headers();
         const response = await fetch(apiUrl, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`,
-                'X-Noroff-API-Key': apiKey
-            },
+            headers: requestHeaders,
+
             body: JSON.stringify({
                 title: title,         
                 body: body,          

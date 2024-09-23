@@ -1,4 +1,4 @@
-import { getKey } from '../auth/key.js'; 
+import { headers } from "../headers";
 import { deletePost } from './delete.js';
 
 export async function fetchSinglePost() {
@@ -7,30 +7,13 @@ export async function fetchSinglePost() {
         console.error('Post ID not found in the URL');
         return;
     }
-
     const apiUrl = `https://v2.api.noroff.dev/social/posts/${postId}?_author=true`;
-    const userToken = localStorage.getItem('userToken');
-
-    if (!userToken) {
-        throw new Error('User is not authenticated');
-    }
-
-    let apiKey;
-    try {
-        apiKey = await getKey('My API Key Name');
-    } catch (error) {
-        console.error('Failed to retrieve API key:', error);
-        throw new Error('Failed to retrieve API key');
-    }
 
     try {
+        const requestHeaders = await headers();
         const response = await fetch(apiUrl, {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`,
-                'X-Noroff-API-Key': apiKey
-            },
+            headers: requestHeaders
         });
 
         if (!response.ok) {
@@ -105,19 +88,6 @@ function displaySinglePost(post) {
 
 export async function readPosts(limit = 12, page = 1, tag) {
     const apiUrl = 'https://v2.api.noroff.dev/social/posts';
-    const userToken = localStorage.getItem('userToken');
-
-    if (!userToken) {
-        throw new Error('User is not authenticated');
-    }
-
-    let apiKey;
-    try {
-        apiKey = await getKey('My API Key Name');
-    } catch (error) {
-        console.error('Failed to retrieve API key:', error);
-        throw new Error('Failed to retrieve API key');
-    }
 
     try {
         const url = new URL(apiUrl);
@@ -127,14 +97,10 @@ export async function readPosts(limit = 12, page = 1, tag) {
             url.searchParams.append('tag', tag);
         }
         url.searchParams.append('_author', 'true');
-
+        const requestHeaders = await headers();
         const response = await fetch(url, {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`,
-                'X-Noroff-API-Key': apiKey
-            },
+            headers: requestHeaders
         });
 
         if (!response.ok) {
@@ -152,19 +118,6 @@ export async function readPosts(limit = 12, page = 1, tag) {
 
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
     const apiUrl = `https://v2.api.noroff.dev/social/users/${username}/posts`;
-    const userToken = localStorage.getItem('userToken');
-
-    if (!userToken) {
-        throw new Error('User is not authenticated');
-    }
-
-    let apiKey;
-    try {
-        apiKey = await getKey('My API Key Name');
-    } catch (error) {
-        console.error('Failed to retrieve API key:', error);
-        throw new Error('Failed to retrieve API key');
-    }
 
     try {
         const url = new URL(apiUrl);
@@ -173,14 +126,10 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
         if (tag) {
             url.searchParams.append('tag', tag);
         }
-
+        const requestHeaders = await headers();
         const response = await fetch(url, {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken}`,
-                'X-Noroff-API-Key': apiKey
-            },
+            headers: requestHeaders
         });
 
         if (!response.ok) {
@@ -195,7 +144,6 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
         throw error;
     }
 }
-
 
 function addPostsToHTML(posts) {
     const container = document.getElementById('posts-container');
