@@ -1,5 +1,4 @@
 export default async function router(pathname = window.location.pathname) {
-  console.log(`Routing to: ${pathname}`);
   try {
       switch (pathname) {
           case "/index.html":
