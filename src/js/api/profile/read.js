@@ -1,7 +1,7 @@
 import { headers } from "../headers";
 import { API_SOCIAL_PROFILES } from "../constants";
 
-export async function readProfile() {
+export async function fetchProfile() {
 
     const username = localStorage.getItem('name');
     const apiUrl = `${API_SOCIAL_PROFILES}/${username}`;
@@ -19,7 +19,7 @@ export async function readProfile() {
         }
 
         const data = await response.json();
-        return data;
+        return data.data;
 
     } catch (error) {
         console.error('Error getting profile details:', error);
@@ -27,11 +27,9 @@ export async function readProfile() {
     }
 }
 
-
-
 export async function displayLoggedInUserProfile(data) {
 
-    const profileData = await readProfile();
+    const profileData = await fetchProfile();
     console.log('Logged Profile Data:', profileData);
     
     const container = document.getElementById('profileDetails');
@@ -46,12 +44,16 @@ export async function displayLoggedInUserProfile(data) {
     const content = document.createElement('p');
     content.textContent = profileData.bio;
 
-    if (data.avatar && data.avatar.url) {
+    if (profileData.avatar && profileData.avatar.url) {
         const image = document.createElement('img');
         image.src = profileData.avatar.url;
         image.alt = profileData.avatar.alt || 'Profile Avatar';
         image.classList.add('profile-image');
-        profileElement.appendChild(image);
+
+    profileElement.appendChild(image);
+        console.log("Image added:", image.src);
+    } else {
+        console.warn('Avatar not found or missing URL');
     }
 
     profileElement.appendChild(username);
