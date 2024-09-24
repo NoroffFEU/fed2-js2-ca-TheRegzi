@@ -30,7 +30,6 @@ export async function fetchProfile() {
 export async function displayLoggedInUserProfile(data) {
 
     const profileData = await fetchProfile();
-    console.log('Logged Profile Data:', profileData);
     
     const container = document.getElementById('profileDetails');
     container.innerHTML = ''; 
@@ -51,10 +50,9 @@ export async function displayLoggedInUserProfile(data) {
         image.classList.add('profile-image');
 
     profileElement.appendChild(image);
-        console.log("Image added:", image.src);
-    } else {
-        console.warn('Avatar not found or missing URL');
-    }
+
+    } 
+    
 
     profileElement.appendChild(username);
     profileElement.appendChild(content);
