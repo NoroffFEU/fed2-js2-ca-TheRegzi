@@ -8,7 +8,6 @@ export async function onRegister(event) {
   const password = document.getElementById('password').value;
   const bio = document.getElementById('bio').value;
   const avatarUrl = document.getElementById('avatarUrl').value;
-  const avatarAlt = document.getElementById('avatarAlt').value;
   
 
   const registrationData = {
@@ -16,7 +15,7 @@ export async function onRegister(event) {
     email: email,
     password: password,
     bio: bio || undefined,
-    avatar: avatarUrl ? { url: avatarUrl, alt: avatarAlt || '' } : undefined,
+    avatar: avatarUrl ? { url: avatarUrl, alt: 'Profile Avatar' } : undefined,
   };
 
   try {
