@@ -180,6 +180,39 @@ textarea {
     width: 350px;
 }
 
+#profileDetails {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Source sans 3', Verdana, Geneva, Tahoma, sans-serif;
+    color: #000000;
+}
+
+.profile-image {
+    width: 300px;
+    border-radius: 200px;
+}
+
+.updateProfile {
+    margin: 1em 0em 3em;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.update-link {
+    text-decoration: none;
+    background-color: #7EBFCD;
+    padding: 1em;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    color: #000000;
+    border-radius: 30px;
+    cursor: pointer;
+}
 
 @media (min-width: 755px) {
 
