@@ -33,6 +33,7 @@ export default async function router(pathname = window.location.pathname) {
               console.log('Loaded postCreate.js');
               break;
           case "/profile/":
+          case "/profile/index.html":
               await import("./views/profile.js");
               console.log('Loaded profile.js');
               break;
