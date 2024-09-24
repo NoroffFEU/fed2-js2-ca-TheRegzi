@@ -1,14 +1,14 @@
 import { authGuard } from "../../utilities/authGuard";
-import { updateProfile } from "./updateProfile"
+import { updateProfile } from "../../api/profile/update"
 
 authGuard();
 
-document.getElementById('updateProfileForm').addEventListener('submit', async function (e) {
+document.getElementById('updateProfile').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const username = localStorage.getItem('name'); 
-    const bio = document.getElementById('bio').value;
-    const avatarUrl = document.getElementById('avatarUrl').value;
+    const bio = document.getElementById('update-bio').value;
+    const avatarUrl = document.getElementById('update-avatar').value;
 
     const profileData = {
         bio: bio || '', 
@@ -20,7 +20,7 @@ document.getElementById('updateProfileForm').addEventListener('submit', async fu
     try {
         const updatedProfile = await updateProfile(username, profileData);
         console.log('Profile updated successfully:', updatedProfile);
-        window.location.href = 'index.html'; 
+        window.location.href = '/profile/index.html'; 
 
     } catch (error) {
         console.error('Error updating profile:', error);

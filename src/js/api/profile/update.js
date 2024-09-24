@@ -1,5 +1,21 @@
 import { headers } from "../headers";
 import { API_SOCIAL_PROFILES } from "../constants";
+import { fetchProfile } from "./read";
+
+async function populateForm() {
+    try {
+        const username = localStorage.getItem('name'); 
+        const profileData = await fetchProfile(username); 
+        console.log('Fetched Profile Data:', profileData);
+        
+        document.getElementById('update-bio').value = profileData.bio || '';
+        document.getElementById('update-avatar').value = profileData.avatar?.url || '';
+    } catch (error) {
+        console.error('Error fetching profile:', error);
+    }
+}
+
+populateForm();
 
 export async function updateProfile(username, { avatar }) {
 
