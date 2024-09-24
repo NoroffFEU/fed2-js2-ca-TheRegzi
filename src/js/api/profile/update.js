@@ -20,6 +20,7 @@ populateForm();
 export async function updateProfile(username, { avatar }) {
 
     const apiUrl = `${API_SOCIAL_PROFILES}/${username}`;
+    const bio = document.getElementById('update-bio').value;
 
     try {
         const requestHeaders = await headers();
