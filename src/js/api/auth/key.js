@@ -1,5 +1,17 @@
 import { API_AUTH_KEY } from "../constants";
 
+/** 
+ * Retrieves an API key associated with a specific name.
+ * It uses a POST request to the API_AUTH_KEY endpoint and expects the user to be authenticated
+ * via a 'userToken' stored in 'localStorage'. If no token, it throws an authentication error.
+ * If server response is not ok, it throws a network error.
+ * 
+ * @param {string} name This is the name of the user.
+ * @returns {Promise<string>} - A promise that resolves to the API key.
+ * @throws {Error} - Throws an error if the user is not authenticated or if the request fails.
+ * 
+ */
+
 export async function getKey(name) {
   const userToken = localStorage.getItem('userToken');
 
