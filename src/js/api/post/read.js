@@ -2,6 +2,16 @@ import { headers } from "../headers";
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { deletePost } from './delete.js';
 
+/**
+ * Fetches a single post by sending a 'GET' request to the 'API_SOCIAL_POSTS/{postId} endpoint.
+ * The function retrieves the post based on the unique id found in the URL's query parameters.
+ * If the request is successful, it calls the function 'displaySinglePost' to display the post.
+ * It throws an error if the response is not okay or if the fetching of the post fails. 
+ * 
+ * @async
+ * @returns {void} Calls `displaySinglePost` with the post data but does not return anything.
+ * @throws {Error} Throws an error if the post ID is not found in the URL or if the request fails.
+ */
 export async function fetchSinglePost() {
     const postId = new URLSearchParams(window.location.search).get('id'); 
     if (!postId) {
