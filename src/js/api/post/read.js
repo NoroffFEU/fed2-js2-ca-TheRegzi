@@ -38,6 +38,26 @@ export async function fetchSinglePost() {
     }
 }
 
+/**
+ * Displays a single post on the page by dynamically creating the necessary HTML elements.
+ * 
+ * This function takes the `post` object returned from the API, including its `title`, `body`, `media`, and `author`.
+ * It creates the structure for the post and appends it to the 'container'. If the logged-in user is the author
+ * of the post, the 'Edit' and 'Delete' buttons are added with the respective functionalities.
+ * 
+ *  
+ * @param {object} post The post object that contains the details of the post, including:
+ * @param {object} post.data - The data object inside the post.
+ * @param {string} post.data.title - The title of the post.
+ * @param {string} post.data.body - The body/content of the post.
+ * @param {object} [post.data.media] - The media object for the post, including `url` and optional `alt`.
+ * @param {string} [post.data.media.url] - The URL of the media associated with the post (if any).
+ * @param {string} [post.data.media.alt] - The alt text for the media (optional).
+ * @param {object} post.data.author - The author object containing details about the post creator.
+ * @param {string} post.data.author.name - The username of the author.
+ * 
+ */
+
 function displaySinglePost(post) {
     const container = document.getElementById('single-post-container');
     container.innerHTML = ''; 
