@@ -1,3 +1,14 @@
+/**
+ * Function to login a user by their email and password, by sending a POST request to the login API.
+ * If the response is not okay, it throws a login error with a message from the API or a default message.
+ * 
+ * @async
+ * @param {string} email The users registered email address.
+ * @param {string} password The users registered password.
+ * @returns {Promise<object>} A promise that returns the response in json.
+ * @throws {Error} Throws an error if the login fails or the response is not okay.
+ */
+
 export async function login({ email, password }) {
     try {
       const response = await fetch('https://v2.api.noroff.dev/auth/login', {
