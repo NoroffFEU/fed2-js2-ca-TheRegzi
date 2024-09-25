@@ -1,6 +1,19 @@
 import { headers } from "../headers";
 import { API_SOCIAL_POSTS } from "../constants";
 
+/**
+ * Fetches a post by its ID and populates form fields with the post data.
+ * 
+ * This function sends a GET request to the API to retrieve a specific post by its ID. 
+ * The post data is then used to populate the form fields on the page (title, body, media, and tags).
+ * If the request fails, an error message is displayed, and an error is logged.
+ * 
+ * @async
+ * @param {number} id The unique ID of the post to fetch.
+ * @returns {Promise<object|void>} A promise that resolves to the post object or returns nothing if the request fails.
+ * @throws {Error} Throws an error if the fetch request fails.
+ */
+
 export async function getPost(id) {
     const apiUrl = `${API_SOCIAL_POSTS}/${id}`;
 
@@ -28,6 +41,23 @@ export async function getPost(id) {
         alert('Could not fetch post data. Please try again later.');
     }
 }
+
+/**
+ * Updates a post by sending a PUT request to the API with the updated post data.
+ * 
+ * This function sends a PUT request to update a post by its ID. The post's title, body, tags, 
+ * and media are updated based on the form data passed in. If the request is successful, the user 
+ * is redirected to the updated post page. If the request fails, an error message is displayed.
+ * 
+ * @async
+ * @param {number} id The unique ID of the post to update.
+ * @param {string} title The updated title of the post.
+ * @param {string} body The updated body/content of the post.
+ * @param {string} [tags] A comma-separated string of tags for the post (optional).
+ * @param {string} [media] The updated media URL for the post (optional).
+ * @returns {Promise<void>} Resolves when the update is successful, alerts the user, and redirects to the single post page.
+ * @throws {Error} Throws an error if the update request fails.
+ */
 
 export async function updatePost(id, { title, body, tags, media }) {
     const apiUrl = `${API_SOCIAL_POSTS}/${id}`;
