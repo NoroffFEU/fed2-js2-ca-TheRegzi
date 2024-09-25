@@ -5,7 +5,7 @@
  * @async
  * @param {string} email The users registered email address.
  * @param {string} password The users registered password.
- * @returns {Promise<object>} A promise that returns the response in json.
+ * @returns {Promise<object>} A promise that resolves to the response data in JSON format.
  * @throws {Error} Throws an error if the login fails or the response is not okay.
  */
 
