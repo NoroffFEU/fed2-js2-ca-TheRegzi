@@ -1,5 +1,16 @@
 import { register } from '../../api/auth/register';
 
+/**
+ * Handles user registration by collecting registration data from the form,
+ * and calling the 'register' function. If the registration is successful,
+ * the user is alerted and redirected to the login page. In case of failure,
+ * an error is logged to the console and the user is alerted.
+ * 
+ * 
+ * @param {Event} event The form submission event to prevent default behavior.
+ * @returns {void} This function does not return any value.
+ */
+
 export async function onRegister(event) {
   event.preventDefault();
 
