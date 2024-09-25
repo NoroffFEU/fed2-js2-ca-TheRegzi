@@ -3,8 +3,15 @@ import { authGuard } from "../../utilities/authGuard";
 
 authGuard();
 
+/**
+ * Function to initialize the new social media post creation. 
+ * It has a event listener for the submit button, which calls the 'handleCreatePost' function if submit is clicked.
+ * It alerts the user if the post creation is successful and logs errors to the console if unsuccessful.
+ * 
+ * @returns {void} This function does not return any value.
+ */
+
 function initializePostCreate() {
-    console.log('Initializing post creation');
 
     const form = document.getElementById('create-form');
     if (!form) {
@@ -12,17 +19,13 @@ function initializePostCreate() {
         return;
     }
 
-    console.log('Form found in postCreate.js');
-
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); 
-        console.log('Form submitted');
 
         try {
             const formData = new FormData(form);
             console.log('Form Data:', Object.fromEntries(formData)); 
 
-    
             const isSuccess = await handleCreatePost(formData);
 
             if (isSuccess) {
