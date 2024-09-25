@@ -31,6 +31,7 @@ populateForm();
  * If the update request fails, an error is thrown with a message from the API or a default message.
  * 
  * @param {string} username The username of the logged-in user whose profile is being updated.
+ * @param {string} bio The bio of the users profile.
  * @param {string} avatar The URL of the user's avatar.
  * @returns {Promise<object>} A promise that resolves to the updated profile data in JSON format.
  * @throws {Error} Throws an error message from the API or a default message if the update fails or response is not okay. 
