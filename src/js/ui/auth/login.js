@@ -1,5 +1,16 @@
 import { login } from '../../api/auth/login';
 
+/**
+ * Handles user login by collecting the email and password from the form,
+ * then calls the 'login' function to authenticate the user via the API.
+ * On successful login, the user's token and name are stored in localStorage,
+ * and the user is redirected to the homepage. If unsuccessful, an error is logged 
+ * to the console and an alert is shown to the user.
+ * 
+ * @param {Event} event The form submission event to prevent default behavior.
+ * @returns {void} This function does not return any value.
+ */
+
 export async function onLogin(event) {
   event.preventDefault();
 
