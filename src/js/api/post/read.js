@@ -113,6 +113,21 @@ function displaySinglePost(post) {
     container.appendChild(postElement);
 }
 
+/**
+ * Fetches multiple posts by sending a 'GET' request to the 'API_SOCIAL_POSTS' endpoint. 
+ * This function fetches posts from the API with pagination and an optional tag filter.
+ * Takes the limit and page parameters to limit the amount of posts per page and which page to retrieve.
+ * If successful, it calls the function 'addPostsToHTML' to display the posts on the page.
+ * If it fails, it throws error based on the response from the API or a default message. 
+ * 
+ * @async
+ * @param {number} limit The limit of posts per page.
+ * @param {number} page The number of pages.
+ * @param {string} [tag] - (Optional) A tag to filter the posts.
+ * @returns {Promise<object>} A promise that resolves to the fetched posts data.
+ * @throws {Error} Throws an error if the request fails.
+ */
+
 export async function readPosts(limit = 12, page = 1, tag) {
     const apiUrl = API_SOCIAL_POSTS;
 
