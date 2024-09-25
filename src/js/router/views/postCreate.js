@@ -1,8 +1,6 @@
 import { handleCreatePost } from "../../ui/post/create.js";
 import { authGuard } from "../../utilities/authGuard";
 
-console.log('postCreate.js has been loaded');
-
 authGuard();
 
 function initializePostCreate() {
