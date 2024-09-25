@@ -6,6 +6,7 @@ import { API_AUTH_KEY } from "../constants";
  * via a 'userToken' stored in 'localStorage'. If no token, it throws an authentication error.
  * If server response is not ok, it throws a network error.
  * 
+ * @async
  * @param {string} name This is the name of the user.
  * @returns {Promise<string>} - A promise that resolves to the API key.
  * @throws {Error} - Throws an error if the user is not authenticated or if the request fails.
