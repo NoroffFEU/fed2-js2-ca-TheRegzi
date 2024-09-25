@@ -158,6 +158,22 @@ export async function readPosts(limit = 12, page = 1, tag) {
     }
 }
 
+/**
+ * Displays multiple posts on a page. 
+ * 
+ * This function takes an array of `post` objects returned from the API, including details like 
+ * `title`, `body`, `media`, and `author`. For each post, it creates a clickable link that wraps the post, 
+ * directing the user to a single post page when clicked. The function then appends the posts to the 'container'.
+ * 
+ * @param {Array<object>} posts An array of post objects, each containing the details of a post, including:
+ * @param {string} posts[].title - The title of the post.
+ * @param {string} posts[].body - The body/content of the post.
+ * @param {object} [posts[].media] - The media object for the post.
+ * @param {string} [posts[].media.url] - The URL of the media associated with the post (optional).
+ * @param {string} [posts[].media.alt] - The alt text for the media (optional).
+ * @param {object} posts[].author - The author object containing details about the post creator.
+ * @param {string} posts[].author.name - The username of the author.
+ */
 
 function addPostsToHTML(posts) {
     const container = document.getElementById('posts-container');
