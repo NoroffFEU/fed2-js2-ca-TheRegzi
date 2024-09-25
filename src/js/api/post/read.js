@@ -143,34 +143,6 @@ export async function readPosts(limit = 12, page = 1, tag) {
     }
 }
 
-// export async function readPostsByUser(username, limit = 12, page = 1, tag) {
-//     const apiUrl = `https://v2.api.noroff.dev/social/users/${username}/posts`;
-
-//     try {
-//         const url = new URL(apiUrl);
-//         url.searchParams.append('limit', limit);
-//         url.searchParams.append('page', page);
-//         if (tag) {
-//             url.searchParams.append('tag', tag);
-//         }
-//         const requestHeaders = await headers();
-//         const response = await fetch(url, {
-//             method: 'GET',
-//             headers: requestHeaders
-//         });
-
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-
-//         const posts = await response.json();
-//         addPostsToHTML(posts.data || posts); 
-//         return posts;
-//     } catch (error) {
-//         console.error('Failed to fetch posts by user:', error);
-//         throw error;
-//     }
-// }
 
 function addPostsToHTML(posts) {
     const container = document.getElementById('posts-container');
