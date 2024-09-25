@@ -1,6 +1,17 @@
 import { headers } from "../headers";
 import { API_SOCIAL_PROFILES } from "../constants";
 
+/**
+ * Fetches the profile data of the logged in user by sending a 'GET' request to the API. 
+ * Retrieves the username from 'localStorage' (under the key 'name'), to fetch the logged in users profile.
+ * If fetching fails or the response is not okay, it throws an error.
+ * 
+ * @async
+ * @returns {Promise<object>} A promise that resolves to the profile data object of the logged-in user.
+ * @throws {Error} Throws an error if fetching fails or response is not okay, including an error message from the API. 
+ * 
+ */
+
 export async function fetchProfile() {
 
     const username = localStorage.getItem('name');
@@ -27,7 +38,18 @@ export async function fetchProfile() {
     }
 }
 
-export async function displayLoggedInUserProfile(data) {
+/**
+ * Displays the users profile by dynamically creating the necessary HTML elements.
+ * 
+ * This function fetches the profile data of the logged-in user using `fetchProfile`, including `name`, `bio` and `avatar`.
+ * It creates the structure for the profile and appends it to the 'container'.
+ * 
+ * @async
+ * @param {object} data The profile data object of the logged-in user.
+ * @returns {void}
+ */
+
+ export async function displayLoggedInUserProfile(data) {
 
     const profileData = await fetchProfile();
     
