@@ -1,5 +1,12 @@
 import { updatePost, getPost } from "../../api/post/update";
 
+/**
+ * Extracts the post ID from the URL and loads the corresponding post data by calling the 'getPost' function.
+ * If the post ID is missing or the post fails to load, an error is logged and the user is alerted.
+ * 
+ * @returns {void} This function does not return any value.
+ */
+
 async function loadPostData() {
     const postId = new URLSearchParams(window.location.search).get('id'); 
 
@@ -26,6 +33,15 @@ async function loadPostData() {
 
 loadPostData();
 
+/**
+ * Handles the update of a post with the new form values submitted by the user.
+ * If the post is successfully updated, the user is alerted and redirected to the single post page.
+ * If unsuccessful, an error is logged to the console and an alert is shown to the user.
+ * 
+ * @param {Event} event The form submission event to prevent default behavior.
+ * @returns {void} This function does not return any value.
+ */
+
 export async function onUpdatePost(event) {
     event.preventDefault(); 
 
@@ -47,7 +63,6 @@ export async function onUpdatePost(event) {
     }
 
     try {
-        
         await updatePost(postId, post); 
         alert('Post updated successfully!');
         window.location.href = `/post/index.html?id=${postId}`; 
