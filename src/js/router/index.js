@@ -18,13 +18,13 @@ export default async function router(pathname = window.location.pathname) {
               await import("./views/register.js");
               console.log('Loaded register.js');
               break;
-            case "/post/":
-            case "/post/index.html": 
+          case "/post/":
+          case "/post/index.html": 
                 await import("./views/post.js");
                 console.log('Loaded post.js');
                 break;
-            case "/post/edit/":
-            case "/post/edit/index.html":
+          case "/post/edit/":
+          case "/post/edit/index.html":
               await import("./views/postEdit.js");
               console.log('Loaded postEdit.js');
               break;
@@ -37,11 +37,11 @@ export default async function router(pathname = window.location.pathname) {
               await import("./views/profile.js");
               console.log('Loaded profile.js');
               break;
-        case "/profile/update.html":
-            case "/profile/update":
-            await import("./views/updateProfile.js");
-            console.log('Loading updateProfile.js');
-            break;
+          case "/profile/update.html":
+          case "/profile/update":
+              await import("./views/updateProfile.js");
+              console.log('Loading updateProfile.js');
+              break;
           default:
               await import("./views/notFound.js");
               console.log('Loaded notFound.js');
