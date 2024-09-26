@@ -38,6 +38,7 @@ export default async function router(pathname = window.location.pathname) {
               console.log('Loaded profile.js');
               break;
         case "/profile/update.html":
+            case "/profile/update":
             await import("./views/updateProfile.js");
             console.log('Loading updateProfile.js');
             break;
