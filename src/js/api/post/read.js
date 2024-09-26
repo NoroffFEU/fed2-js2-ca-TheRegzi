@@ -41,16 +41,15 @@ export async function fetchSinglePost() {
 /**
  * Displays a single post on the page by dynamically creating the necessary HTML elements.
  * 
- * This function takes the `post` object returned from the API, including its `title`, `body`, `media`, and `author`.
+ * This function takes the post object returned from the API, including its title, body, media, and author.
  * It creates the structure for the post and appends it to the 'container'. If the logged-in user is the author
  * of the post, the 'Edit' and 'Delete' buttons are added with the respective functionalities.
  * 
- *  
  * @param {object} post The post object that contains the details of the post, including:
  * @param {object} post.data - The data object inside the post.
  * @param {string} post.data.title - The title of the post.
  * @param {string} post.data.body - The body/content of the post.
- * @param {object} [post.data.media] - The media object for the post, including `url` and optional `alt`.
+ * @param {object} [post.data.media] - The media object for the post, including url and optional alt.
  * @param {string} [post.data.media.url] - The URL of the media associated with the post (if any).
  * @param {string} [post.data.media.alt] - The alt text for the media (optional).
  * @param {object} post.data.author - The author object containing details about the post creator.
@@ -89,28 +88,133 @@ function displaySinglePost(post) {
 
     const loggedInUser = localStorage.getItem('name'); 
     if (loggedInUser === post.data.author.name) {  
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit';
-    editButton.classList.add('edit-button');
-    editButton.onclick = function() {
-        window.location.href = `/post/edit/index.html?id=${post.data.id}`; 
-    };
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.classList.add('edit-button');
+        editButton.onclick = function() {
+            window.location.href = `/post/edit/index.html?id=${post.data.id}`; 
+        };
     
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.classList.add('delete-button');
-    deleteButton.onclick = function() {
-        const confirmed = confirm('Are you sure you want to delete this post?');
-        if (confirmed) {
-            console.log('Deleting post with ID:', post.data.id);
-            deletePost(post.data.id); 
-        }
-    };
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-button');
+        deleteButton.onclick = function() {
+            const confirmed = confirm('Are you sure you want to delete this post?');
+            if (confirmed) {
+                console.log('Deleting post with ID:', post.data.id);
+                deletePost(post.data.id); 
+            }
+        };
 
-    postElement.appendChild(editButton);
-    postElement.appendChild(deleteButton);
-}
+        postElement.appendChild(editButton);
+        postElement.appendChild(deleteButton);
+    }
+
+    const commentSection = displayCommentSection(post, post.data.id);
+    postElement.appendChild(commentSection);
+
     container.appendChild(postElement);
+}
+
+async function addCommentToPost(id, commentText, replyToId = null) {
+    const apiUrl = `${API_SOCIAL_POSTS}/${id}/comment`;
+
+    try {
+        const requestHeaders = await headers();
+        const requestBody = {
+            body: commentText
+        };
+
+        if (replyToId) {
+            requestBody.replyToId = replyToId;
+        }
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: requestHeaders,
+            body: JSON.stringify(requestBody) 
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const commentData = await response.json();
+        return commentData; 
+    } catch (error) {
+        console.error('Failed to add comment:', error);
+        throw error; 
+    }
+}
+
+/**
+ * Displays the comment section for a post, including existing comments and a form to add new comments.
+ * 
+ * @param {Object} post - The post object containing data, number of comments.
+ * @param {number} postId - The ID of the post.
+ */
+
+function displayCommentSection(post, postId) {
+    const commentSection = document.createElement('div');
+    commentSection.classList.add('comments-section');
+
+    const commentTitle = document.createElement('h3');
+    commentTitle.textContent = 'Comments';
+    commentSection.appendChild(commentTitle);
+
+    const commentCount = post.data._count.comments;
+    const commentCountElement = document.createElement('p');
+    commentCountElement.textContent = `Number of comments: ${commentCount}`;
+    commentSection.appendChild(commentCountElement);
+
+    const commentsList = document.createElement('div');
+    commentSection.appendChild(commentsList);
+
+    const commentForm = document.createElement('form');
+    commentForm.classList.add('comment-form');
+    
+    const commentInput = document.createElement('input');
+    commentInput.type = 'text';
+    commentInput.placeholder = 'Write a comment...';
+    commentInput.classList.add('comment-input');
+    commentInput.required = true;
+    
+    const commentButton = document.createElement('button');
+    commentButton.type = 'submit';
+    commentButton.textContent = 'Post Comment';
+    commentButton.classList.add('comment-button');
+
+    commentForm.appendChild(commentInput);
+    commentForm.appendChild(commentButton);
+    commentSection.appendChild(commentForm);
+
+    commentForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const commentText = commentInput.value.trim();
+
+        if (commentText === '') {
+            alert('Comment cannot be empty.');
+            return;
+        }
+
+        try {
+            await addCommentToPost(postId, commentText); 
+            alert('Comment added successfully!');
+            
+            const commentElement = document.createElement('p');
+            commentElement.textContent = `You: ${commentText}`;
+            commentsList.appendChild(commentElement); 
+
+            commentInput.value = ''; 
+            commentCountElement.textContent = `Number of comments: ${++post.data._count.comments}`;
+        } catch (error) {
+            console.error('Error adding comment:', error);
+            alert('Failed to add comment. Please try again.');
+        }
+    });
+
+    return commentSection;
 }
 
 /**
@@ -215,3 +319,5 @@ function addPostsToHTML(posts) {
         container.appendChild(postLink);
     });
 }
+
+
