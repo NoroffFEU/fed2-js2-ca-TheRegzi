@@ -12,13 +12,14 @@ import { deletePost } from './delete.js';
  * @returns {void} Calls `displaySinglePost` with the post data but does not return anything.
  * @throws {Error} Throws an error if the post ID is not found in the URL or if the request fails.
  */
+
 export async function fetchSinglePost() {
     const postId = new URLSearchParams(window.location.search).get('id'); 
     if (!postId) {
         console.error('Post ID not found in the URL');
         return;
     }
-    const apiUrl = `${API_SOCIAL_POSTS}/${postId}?_author=true`;
+    const apiUrl = `${API_SOCIAL_POSTS}/${postId}?_author=true&_comments=true`;
 
     try {
         const requestHeaders = await headers();
@@ -45,6 +46,9 @@ export async function fetchSinglePost() {
  * It creates the structure for the post and appends it to the 'container'. If the logged-in user is the author
  * of the post, the 'Edit' and 'Delete' buttons are added with the respective functionalities.
  * 
+ * The function also displays the comment section and a form to add new comments. If the comment section
+ * fails to generate properly, an error message is logged.
+ * 
  * @param {object} post The post object that contains the details of the post, including:
  * @param {object} post.data - The data object inside the post.
  * @param {string} post.data.title - The title of the post.
@@ -54,10 +58,17 @@ export async function fetchSinglePost() {
  * @param {string} [post.data.media.alt] - The alt text for the media (optional).
  * @param {object} post.data.author - The author object containing details about the post creator.
  * @param {string} post.data.author.name - The username of the author.
- * 
+ * @returns {Promise<void>} Resolves when the post and its comment section are displayed.
+ * Logs an error if the post or comment section could not be created.
  */
+ 
 
-function displaySinglePost(post) {
+export async function displaySinglePost(post) {
+    if (!post || !post.data) {
+        console.error('Invalid post data:', post);
+        return;
+    }
+
     const container = document.getElementById('single-post-container');
     container.innerHTML = ''; 
 
@@ -110,51 +121,17 @@ function displaySinglePost(post) {
         postElement.appendChild(deleteButton);
     }
 
-    const commentSection = displayCommentSection(post, post.data.id);
-    postElement.appendChild(commentSection);
+    const commentSection = await displayCommentSection(post, post.data.id);
+    if (commentSection instanceof Node) {
+        postElement.appendChild(commentSection);
+    } else {
+        console.error('Failed to create comment section');
+    }
 
     container.appendChild(postElement);
 }
 
-async function addCommentToPost(id, commentText, replyToId = null) {
-    const apiUrl = `${API_SOCIAL_POSTS}/${id}/comment`;
-
-    try {
-        const requestHeaders = await headers();
-        const requestBody = {
-            body: commentText
-        };
-
-        if (replyToId) {
-            requestBody.replyToId = replyToId;
-        }
-
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: requestHeaders,
-            body: JSON.stringify(requestBody) 
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const commentData = await response.json();
-        return commentData; 
-    } catch (error) {
-        console.error('Failed to add comment:', error);
-        throw error; 
-    }
-}
-
-/**
- * Displays the comment section for a post, including existing comments and a form to add new comments.
- * 
- * @param {Object} post - The post object containing data, number of comments.
- * @param {number} postId - The ID of the post.
- */
-
-function displayCommentSection(post, postId) {
+export async function displayCommentSection(post, postId) {
     const commentSection = document.createElement('div');
     commentSection.classList.add('comments-section');
 
@@ -162,13 +139,17 @@ function displayCommentSection(post, postId) {
     commentTitle.textContent = 'Comments';
     commentSection.appendChild(commentTitle);
 
-    const commentCount = post.data._count.comments;
-    const commentCountElement = document.createElement('p');
-    commentCountElement.textContent = `Number of comments: ${commentCount}`;
-    commentSection.appendChild(commentCountElement);
-
-    const commentsList = document.createElement('div');
-    commentSection.appendChild(commentsList);
+    if (Array.isArray(post.data.comments) && post.data.comments.length > 0) {
+        post.data.comments.forEach(comment => {
+            const commentElement = document.createElement('p');
+            commentElement.textContent = `${comment.author.name}: ${comment.body}`;
+            commentSection.appendChild(commentElement);
+        });
+    } else {
+        const noComments = document.createElement('p');
+        noComments.textContent = 'No comments yet.';
+        commentSection.appendChild(noComments);
+    }
 
     const commentForm = document.createElement('form');
     commentForm.classList.add('comment-form');
@@ -201,20 +182,48 @@ function displayCommentSection(post, postId) {
         try {
             await addCommentToPost(postId, commentText); 
             alert('Comment added successfully!');
-            
-            const commentElement = document.createElement('p');
-            commentElement.textContent = `You: ${commentText}`;
-            commentsList.appendChild(commentElement); 
-
             commentInput.value = ''; 
-            commentCountElement.textContent = `Number of comments: ${++post.data._count.comments}`;
+
+            fetchSinglePost(); 
         } catch (error) {
             console.error('Error adding comment:', error);
             alert('Failed to add comment. Please try again.');
         }
     });
 
-    return commentSection;
+    return commentSection;  
+}
+
+
+async function addCommentToPost(id, commentText, replyToId = null) {
+    const apiUrl = `${API_SOCIAL_POSTS}/${id}/comment`;
+
+    try {
+        const requestHeaders = await headers();
+        const requestBody = {
+            body: commentText
+        };
+
+        if (replyToId) {
+            requestBody.replyToId = replyToId;
+        }
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: requestHeaders,
+            body: JSON.stringify(requestBody) 
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const commentData = await response.json();
+        return commentData; 
+    } catch (error) {
+        console.error('Failed to add comment:', error);
+        throw error; 
+    }
 }
 
 /**
