@@ -79,7 +79,6 @@ export async function updatePost(id, { title, body, tags, media }) {
         if (response.ok) {
             const updatedPost = await response.json(); 
             console.log('Post updated successfully:', updatedPost);
-            alert('Post updated successfully!');
             window.location.href = `/post/index.html?id=${id}`; 
             return; 
         } else {
