@@ -24,7 +24,6 @@ function initializePostCreate() {
 
         try {
             const formData = new FormData(form);
-            console.log('Form Data:', Object.fromEntries(formData)); 
 
             const isSuccess = await handleCreatePost(formData);
 
