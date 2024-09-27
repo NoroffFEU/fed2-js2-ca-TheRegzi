@@ -13,6 +13,7 @@ export default defineConfig({
         auth: resolve(__dirname, "./auth/index.html"),
         register: resolve(__dirname, "./auth/register/index.html"),
         profile: resolve(__dirname, "./profile/index.html"),
+        update: resolve(__dirname, "./profile/update.html"),
         post: resolve(__dirname, "./post/index.html"),
         editPost: resolve(__dirname, "./post/edit/index.html"),
         createPost: resolve(__dirname, "./post/create/index.html"),

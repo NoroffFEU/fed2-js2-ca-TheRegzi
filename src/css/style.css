@@ -1,1 +1,306 @@
 @import url(_reset.css);
+
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+header,
+footer {
+    background-color: antiquewhite;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.1em;
+}
+
+header a,
+footer a {
+    text-decoration: none;
+    color: #000000;
+    cursor: pointer;
+}
+
+.logo {
+    width: 75px;
+}
+
+#logOut {
+    background-color: #428E9E;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8em;
+    color: #ffffff;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+footer {
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    padding: 3em 4em;
+}
+
+.heading {
+    font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    margin: 1.5em;
+}
+
+
+#hamburger-content a {
+    margin-left: 1.5em;
+}
+
+#hamburger-content button {
+    margin: 0.5em 2.1em 0em;
+}
+
+.hamburger-menu #hamburger-button {
+    font-size: 40px;
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.hamburger-menu a {
+    display: block;
+    padding: 0.6em;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+    position: absolute;
+    background-color: antiquewhite;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    left: 0;
+    top: 100px;
+    width: 100%;
+    margin: 0em;
+    padding: 2em 0em;
+    z-index: 100;
+}
+
+.create-post-section {
+    display: flex;
+    flex-direction: column;
+    margin: 3em auto;
+    align-items: center;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    width: 90%;
+    padding: 0.5em;
+
+}
+
+#create-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+}
+
+label {
+    font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em;
+}
+
+input,
+textarea {
+    font-family: 'Source sans 3', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1em;
+    border: 2px solid #B1B1B1;
+    border-radius: 5px;
+    padding: 1em;
+}
+
+#submit-post {
+    background-color: #428E9E;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 1em;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 1em;
+}
+
+
+.post {
+    border: 2px solid #000000;
+    border-radius: 30px;
+    width: 300px;
+    margin: 1em auto;
+    padding: 1.5em;
+    font-family: 'Source sans 3', Verdana, Geneva, Tahoma, sans-serif;
+    color: #000000;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.post-image {
+    width: 250px;
+}
+
+.post-link {
+    text-decoration: none;
+    color: #000000;
+    cursor: pointer;
+}
+
+#login,
+#register {
+    width: 350px;
+}
+
+#profileDetails {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Source sans 3', Verdana, Geneva, Tahoma, sans-serif;
+    color: #000000;
+}
+
+.profile-image {
+    width: 300px;
+    border-radius: 200px;
+}
+
+.updateProfile {
+    margin: 1em 0em 3em;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.update-link {
+    text-decoration: none;
+    background-color: #7EBFCD;
+    padding: 1em;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    color: #000000;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+@media (min-width: 755px) {
+
+    
+    .hamburger-menu #hamburger-button {
+        display: none;
+    }
+    
+    .hamburger-menu a {
+        display: block;
+        font-size: 1.2em;
+    }
+
+    #hamburger-content {
+        display: flex;  
+        flex-direction: row;  
+        justify-content: center;
+        align-items: center;
+        width: 100%;  
+        box-shadow: none;  
+        position: static;  
+        padding: 1em 0;  
+        gap: 2em;
+        margin: 0 auto;
+    }
+
+    #hamburger-content a {
+        display: block;
+        padding-right: 2em;
+    }
+    
+    .hidden {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 1.2em 2em 0 0;
+        gap: 2.5em;
+    }
+    
+    .visible {
+        display: none;
+        padding: 0;
+    }
+
+    .heading {
+        font-size: 2.2em;
+    }
+
+    .create-post-section {
+        display: flex;
+        flex-direction: column;
+        margin: 3em auto;
+        align-items: center;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        width: 60%;
+        padding: 0.5em;
+    
+    }
+    
+    #create-form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heading {
+        font-size: 2.2em;
+    }
+
+    .post {
+        width: 600px;
+        margin: 1em auto;
+        padding: 1.5em;
+        
+    }
+    
+    .post-image {
+        width: 550px;
+    }
+
+    #login {
+        width: 400px;
+    }
+    
+}
+
