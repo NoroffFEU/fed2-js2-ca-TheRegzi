@@ -11,53 +11,51 @@
   <script src="https://kit.fontawesome.com/878e5c0278.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-  <div>
-    <a href="/index.html"><img src="/favicon_io (10)/android-chrome-512x512.png" alt="SnapGram Logo" class="logo"></a>
-  </div>
-  <nav>
-    <div class="hamburger-menu">
-      <button id="hamburger-button" aria-label="Menu button"><i class="fa-solid fa-bars"></i></button>
-      <div id="hamburger-content" class="hidden">
-        <a href="/profile/">My Profile</a>
-        <a href="/post/create/">Create Post</a>
-        <button id="logOut">Logout</button>
-      </div>
+  <header>
+    <div>
+      <a href="/index.html"><img src="/favicon_io (10)/android-chrome-512x512.png" alt="SnapGram Logo" class="logo"></a>
     </div>
-  </nav>
-</header>
-<main>
-  <h1 class="heading">Add a new post!</h1>
-  <div class="create-post-section">
-    <form id="create-form" name="create-form">
-      <div class="form-group">
-        <label for="title">Add a title</label>
-        <input type="text" name="title" id="title" placeholder="Enter title" required>
+    <nav>
+      <div class="hamburger-menu">
+        <button id="hamburger-button" aria-label="Menu button"><i class="fa-solid fa-bars"></i></button>
+        <div id="hamburger-content" class="hidden">
+          <a href="/profile/">My Profile</a>
+          <a href="/post/create/">Create Post</a>
+          <button id="logOut">Logout</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="body">Add a description</label>
-        <textarea name="body" id="body" placeholder="Enter description" rows="3" required></textarea>
-      </div>
-      <div class="form-group">
-        <label for="post-image">Add an image</label>
-        <input type="url" id="post-image" name="post-image" placeholder="Enter Image URL" required>
-      </div>
-      <div class="form-group">
-        <label for="tags">Tags (separated by commas)</label>
-        <input type="text" id="tags" name="tags" placeholder="Enter Tags">
-      </div>
-      <button type="submit" id="submit-post">Create Post</button>
-    </form>
-  </div>
-</main>
-<footer>
-  <div>
-    <p>&copy; 2024 SnapGram, Inc.</p>
-    <p>All rights reserved</p>
-  </div>
-</footer>
-
-<!-- Main script to handle routing and initialization -->
-<script type="module" src="/src/app.js"></script>
+    </nav>
+  </header>
+  <main>
+    <h1 class="heading">Add a new post!</h1>
+    <div class="create-post-section">
+      <form id="create-form" name="create-form">
+        <div class="form-group">
+          <label for="title">Add a title</label>
+          <input type="text" name="title" id="title" placeholder="Enter title" required>
+        </div>
+        <div class="form-group">
+          <label for="body">Add a description</label>
+          <textarea name="body" id="body" placeholder="Enter description" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="post-image">Add an image</label>
+          <input type="url" id="post-image" name="post-image" placeholder="Enter Image URL" required>
+        </div>
+        <div class="form-group">
+          <label for="tags">Tags (separated by commas)</label>
+          <input type="text" id="tags" name="tags" placeholder="Enter Tags">
+        </div>
+        <button type="submit" id="submit-post">Create Post</button>
+      </form>
+    </div>
+  </main>
+  <footer>
+    <div>
+      <p>&copy; 2024 SnapGram, Inc.</p>
+      <p>All rights reserved</p>
+    </div>
+  </footer>
+  <script type="module" src="/src/app.js"></script>
 </body>
 </html>
