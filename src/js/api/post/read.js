@@ -298,27 +298,29 @@ function addPostsToHTML(posts) {
         postLink.href = `post/index.html?id=${post.id}`; 
 
         const postElement = document.createElement('div');
-        postElement.classList.add('post');
+        postElement.classList.add('border-2', 'border-secondary', 'font-post', 'w-350', 'md:w-550', 'mb-5', 'shadow-xl' );
 
-        const title = document.createElement('h2');
+        const title = document.createElement('h3');
         title.textContent = post.title;
+        title.classList.add('font-semibold', 'text-md', 'sm:text-lg', 'font-post', 'm-4', 'mb-2');
 
         const content = document.createElement('p');
-        content.textContent = post.body; 
-         
-         if (post.media && typeof post.media === 'object' && post.media.url) {
+        content.textContent = post.body;
+        content.classList.add('font-post', 'mb-4', 'mx-4', 'text-sm', 'sm:text-md') 
+        
+        const username = document.createElement('h2');
+        username.textContent = `Posted by: ${post.author.name || 'Unknown'}`; 
+        username.classList.add('bg-secondary', 'font-accent', 'text-md', 'sm:text-lg', 'py-2', 'px-3');
+        postElement.appendChild(username);
+
+        if (post.media && typeof post.media === 'object' && post.media.url) {
             const image = document.createElement('img');
             image.src = post.media.url;
             image.alt = post.media.alt; 
             image.classList.add('w-350', 'md:w-550');
             postElement.appendChild(image); 
         } 
-        
-        const username = document.createElement('p');
-        username.textContent = `Posted by: ${post.author.name || 'Unknown'}`; 
-        username.classList.add('post-username');
-        
-        postElement.appendChild(username);
+
         postElement.appendChild(title);
         postElement.appendChild(content);
 
