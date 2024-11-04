@@ -5,33 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SnapGram</title>
   <link rel="icon" href="/favicon_io (10)/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/878e5c0278.js" crossorigin="anonymous"></script>
   <script type="module" src="/src/app.js"></script>
 </head>
 <body>
-  <header class="flex flex-row text-white justify-between items-center bg-green-500">
+  <header class="flex flex-row text-white justify-between items-center bg-primary font-accent">
     <div>
-      <a href="index.html"><img src="/favicon_SG/android-chrome-512x512.png" alt="SnapGram Logo" class="h-36 w-full p-8"></a>
+      <a href="index.html"><img src="/favicon_SG/android-chrome-512x512.png" alt="SnapGram Logo" class="h-24 md:h-28 p-4 pl-8"></a>
     </div>
     <nav>
       <div class="hamburger-menu">
-        <button id="hamburger-button" aria-label="Menu button"><i class="fa-solid fa-bars w-24"></i></button>
-        <div id="hamburger-content" class="hidden">
-          <a href="/profile/">My Profile</a>
-          <a href="/post/create/">Create Post</a>
-          <button id="logOut">Logout</button>
+        <button id="hamburger-button" aria-label="Menu button" class="pr-10 flex flex-col md:hidden text-xl text-black"><i class="fa-solid fa-bars"></i></button>
+        <div id="hamburger-content" class="hidden flex flex-col md:block text-lg text-black">
+          <a class="px-10 mb-4 md:mb-0" href="/profile/">My Profile</a>
+          <a class="px-10 mb-4 md:mb-0" href="/post/create/">Create Post</a>
+          <button class="pl-10 pr-12 text-left " id="logOut">Logout</button>
         </div>
       </div>
     </nav>
   </header>
   <main>
-    <h1 class="heading">Feed</h1>
-    <div id="posts-container"></div>
+    <h1 class="font-heading text-xl font-medium p-4 ml-5 lg:ml-20">Feed</h1>
+    <div class="flex flex-col items-center justify-center" id="posts-container"></div>
   </main>
-  <footer>
+  <footer class="bg-primary p-14">
     <div>
       <p>&copy; 2024 SnapGram, Inc.</p>
       <p>All rights reserved</p>

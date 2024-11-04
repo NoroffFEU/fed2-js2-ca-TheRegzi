@@ -1,6 +1,32 @@
 @import url(_reset.css);
 
-body {
+.visible {
+    display: block;
+    position: absolute;
+    background-color: #EBDBFA;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    left: 0;
+    top: 90px;
+    width: 100%;
+    margin: 0em;
+    padding: 2em 0em;
+    z-index: 100;
+}
+
+@media (min-width: 755px) {
+
+    #hamburger-content {
+        display: flex;  
+        flex-direction: row;  
+        justify-content: center;
+        align-items: center;
+        width: 100%;  
+        box-shadow: none;  
+        position: static;   
+    }
+}
+
+/* body {
     padding: 0;
     margin: 0;
     min-height: 100vh;
@@ -12,31 +38,6 @@ main {
     flex: 1;
 }
 
-header,
-footer {
-    background-color: antiquewhite;
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5em;
-    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.1em;
-}
-
-header a,
-footer a {
-    text-decoration: none;
-    color: #000000;
-    cursor: pointer;
-}
-
-.logo {
-    width: 75px;
-}
 
 #logOut {
     background-color: #428E9E;
@@ -47,17 +48,6 @@ footer a {
     font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1em;
     cursor: pointer;
-}
-
-footer {
-    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
-    padding: 3em 4em;
-}
-
-.heading {
-    font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 600;
-    margin: 1.5em;
 }
 
 
@@ -85,22 +75,6 @@ footer {
     font-size: 1.1em;
 }
 
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-    position: absolute;
-    background-color: antiquewhite;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    left: 0;
-    top: 100px;
-    width: 100%;
-    margin: 0em;
-    padding: 2em 0em;
-    z-index: 100;
-}
 
 .create-post-section {
     display: flex;
@@ -218,51 +192,6 @@ textarea {
 
 @media (min-width: 755px) {
 
-    
-    .hamburger-menu #hamburger-button {
-        display: none;
-    }
-    
-    .hamburger-menu a {
-        display: block;
-        font-size: 1.2em;
-    }
-
-    #hamburger-content {
-        display: flex;  
-        flex-direction: row;  
-        justify-content: center;
-        align-items: center;
-        width: 100%;  
-        box-shadow: none;  
-        position: static;  
-        padding: 1em 0;  
-        gap: 2em;
-        margin: 0 auto;
-    }
-
-    #hamburger-content a {
-        display: block;
-        padding-right: 2em;
-    }
-    
-    .hidden {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin: 1.2em 2em 0 0;
-        gap: 2.5em;
-    }
-    
-    .visible {
-        display: none;
-        padding: 0;
-    }
-
-    .heading {
-        font-size: 2.2em;
-    }
 
     .create-post-section {
         display: flex;
@@ -302,5 +231,5 @@ textarea {
         width: 400px;
     }
     
-}
+} */
 
