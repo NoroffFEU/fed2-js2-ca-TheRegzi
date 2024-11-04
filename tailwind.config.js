@@ -25,6 +25,10 @@ module.exports = {
         lg: '1024px', 
         xl: '1280px',
       },
+      width: {
+        '350': '350px', 
+        '550': '550px',
+      },
     },
   },
   plugins: [],

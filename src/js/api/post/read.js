@@ -296,7 +296,6 @@ function addPostsToHTML(posts) {
        
         const postLink = document.createElement('a');
         postLink.href = `post/index.html?id=${post.id}`; 
-        postLink.classList.add('post-link');
 
         const postElement = document.createElement('div');
         postElement.classList.add('post');
@@ -311,7 +310,7 @@ function addPostsToHTML(posts) {
             const image = document.createElement('img');
             image.src = post.media.url;
             image.alt = post.media.alt; 
-            image.classList.add('post-image');
+            image.classList.add('w-350', 'md:w-550');
             postElement.appendChild(image); 
         } 
         
