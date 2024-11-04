@@ -8,7 +8,7 @@
   <script src="https://kit.fontawesome.com/878e5c0278.js" crossorigin="anonymous"></script>
   <script type="module" src="/src/app.js"></script>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
   <header class="flex flex-row text-white justify-between items-center bg-primary font-accent">
     <div>
       <a href="index.html"><img src="/favicon_SG/android-chrome-512x512.png" alt="SnapGram Logo" class="h-24 md:h-28 p-4 pl-8"></a>
@@ -24,8 +24,8 @@
       </div>
     </nav>
   </header>
-  <main>
-    <h1 class="font-heading text-xl font-medium flex justify-center m-8 sm:m-10">Feed</h1>
+  <main class="flex-1">
+    <h1 class="font-heading text-lg sm:text-xl font-medium flex justify-center m-8 sm:m-10">Feed</h1>
     <div class="flex flex-col items-center justify-center" id="posts-container"></div>
   </main>
   <footer class="bg-primary font-accent p-16 md:p-24 mt-6">
