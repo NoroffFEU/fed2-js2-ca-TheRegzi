@@ -26,18 +26,7 @@
     }
 }
 
-/* body {
-    padding: 0;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-}
-
+/* 
 
 #logOut {
     background-color: #428E9E;
@@ -49,32 +38,6 @@ main {
     font-size: 1em;
     cursor: pointer;
 }
-
-
-#hamburger-content a {
-    margin-left: 1.5em;
-}
-
-#hamburger-content button {
-    margin: 0.5em 2.1em 0em;
-}
-
-.hamburger-menu #hamburger-button {
-    font-size: 40px;
-    height: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5em;
-}
-
-.hamburger-menu a {
-    display: block;
-    padding: 0.6em;
-    font-weight: 500;
-    font-size: 1.1em;
-}
-
 
 .create-post-section {
     display: flex;
