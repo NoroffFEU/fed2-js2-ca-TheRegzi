@@ -101,15 +101,15 @@ export async function displaySinglePost(post) {
     const loggedInUser = localStorage.getItem('name'); 
     if (loggedInUser === post.data.author.name) {  
         const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        editButton.classList.add('edit-button');
+        editButton.textContent = 'Edit Post';
+        editButton.classList.add('rounded-lg', 'bg-accent', 'text-white', 'py-2', 'px-3', 'ml-4', 'mt-3', 'font-accent', 'text-sm');
         editButton.onclick = function() {
             window.location.href = `/post/edit/index.html?id=${post.data.id}`; 
         };
     
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Delete Post';
+        deleteButton.classList.add('bg-customRed', 'rounded-lg', 'py-2', 'px-3', 'font-accent', 'ml-3', 'text-white', 'text-sm');
         deleteButton.onclick = function() {
             const confirmed = confirm('Are you sure you want to delete this post?');
             if (confirmed) {
@@ -168,7 +168,7 @@ export async function displayCommentSection(post, postId) {
     const commentButton = document.createElement('button');
     commentButton.type = 'submit';
     commentButton.textContent = 'Post Comment';
-    commentButton.classList.add('bg-accent', 'py-3', 'px-4', 'my-2', 'text-white', 'rounded-lg', 'font-accent');
+    commentButton.classList.add('bg-accent', 'py-3', 'px-4', 'my-2', 'text-white', 'rounded-lg', 'font-accent', 'text-sm');
 
     commentForm.appendChild(commentInput);
     commentForm.appendChild(commentButton);
