@@ -5,50 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SnapGram</title>
   <link rel="icon" href="/favicon_io (10)/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/css/style.css">
   <script src="https://kit.fontawesome.com/878e5c0278.js" crossorigin="anonymous"></script>
   <script type="module" src="/src/app.js"></script>
 </head>
-<body>
-  <header>
+<body class="flex flex-col min-h-screen">
+  <header class="flex flex-row text-white justify-between items-center bg-primary font-accent">
     <div>
-      <img src="/favicon_io (10)/android-chrome-512x512.png" alt="SnapGram Logo" class="logo">
+      <a href="/index.html"><img src="/favicon_SG/android-chrome-512x512.png" alt="SnapGram Logo" class="h-24 md:h-28 p-4 pl-8"></a>
     </div>
     <nav>
       <div class="hamburger-menu">
-        <button id="hamburger-button" aria-label="Menu button"><i class="fa-solid fa-bars"></i></button>
-        <div id="hamburger-content" class="hidden">
-          <a href="/auth/login/">Login</a>
-          <a href="/auth/register/">Register</a>
+        <button id="hamburger-button" aria-label="Menu button" class="pr-10 flex flex-col md:hidden text-xl text-black"><i class="fa-solid fa-bars"></i></button>
+        <div id="hamburger-content" class="hidden flex flex-col md:block text-lg text-black">
+          <a class="px-10 mb-4 md:mb-0 font-medium" href="/auth/login/">Login</a>
+          <a class="px-10 mb-4 md:mb-0 font-medium" href="/auth/register/">Register</a>
         </div>
       </div>
     </nav>
   </header>
-  <main>
-    <h1 class="heading">Login to SnapGram</h1>
-    <div class="create-post-section">
-    <form name="login" id="login">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" autocomplete="username" required />
+    <main class="flex-1">
+    <h1 class="font-heading text-lg sm:text-xl font-medium flex justify-center m-8 sm:m-10">Login to SnapGram</h1>
+    <div class="flex flex-col items-center justify-center">
+    <form name="login" id="login" class="flex flex-col items-center border-4 border-secondary rounded-lg w-350 sm:w-550 p-5">
+      <div class="w-full flex flex-col">
+        <label for="email" class="font-heading text-lg mb-2">Email</label>
+        <input id="email" type="email" name="email" autocomplete="username" class="font-post border-2 border-accent rounded p-3" required />
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" autocomplete="current-password" required />
+      <div class="w-full flex flex-col">
+        <label for="password" class="font-heading text-lg my-2">Password</label>
+        <input type="password" name="password" id="password" autocomplete="current-password" class="font-post border-2 border-accent rounded p-3" required />
       </div>
-      <button>Login</button>
+      <button class="bg-accent rounded-lg text-white my-7 px-5 py-2 font-accent text-sm sm:text-md">Login</button>
+      <p class="font-post text-sm mb-4 font-medium">Not a user? <a class="text-accent font-semibold" href="/auth/register/">Register here!</a></p>
     </form>
-    <p>Not a user? <a href="/auth/register/">Register here!</a></p>
     </div>
   </main>
-  <footer>
-  <div>
+  <footer class="bg-primary font-accent p-16 md:p-24 mt-12">
+    <div class="md:ml-10">
       <p>&copy; 2024 SnapGram, Inc.</p>
       <p>All rights reserved</p>
-  </div>
+    </div>
   </footer>
-  </body>
-  </html>
+</body>
+</html>

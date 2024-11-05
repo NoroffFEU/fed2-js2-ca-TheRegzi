@@ -73,13 +73,20 @@ export async function displaySinglePost(post) {
     container.innerHTML = ''; 
 
     const postElement = document.createElement('div');
-    postElement.classList.add('post');
+    postElement.classList.add('border-2', 'border-secondary', 'font-post', 'w-350', 'md:w-550', 'mb-5', 'shadow-xl');
 
-    const title = document.createElement('h2');
+    const title = document.createElement('h3');
     title.textContent = post.data.title;
+    title.classList.add('font-semibold', 'text-md', 'sm:text-lg', 'font-post', 'm-4', 'mb-2');
 
     const content = document.createElement('p');
     content.textContent = post.data.body;
+    content.classList.add('font-post', 'mb-4', 'mx-4', 'text-sm', 'sm:text-md'); 
+
+    const username = document.createElement('h2');
+    username.textContent = `Posted by: ${post.data.author.name || 'Unknown'}`;
+    username.classList.add('bg-secondary', 'font-accent', 'text-md', 'sm:text-lg', 'py-2', 'px-3');
+    postElement.appendChild(username);
 
     if (post.data.media && post.data.media.url) {
         const image = document.createElement('img');
@@ -88,27 +95,21 @@ export async function displaySinglePost(post) {
         image.classList.add('post-image');
         postElement.appendChild(image);
     }
-
-    const username = document.createElement('p');
-    username.textContent = `Posted by: ${post.data.author.name || 'Unknown'}`;
-    username.classList.add('post-username');
-
     postElement.appendChild(title);
-    postElement.appendChild(username);
     postElement.appendChild(content);
 
     const loggedInUser = localStorage.getItem('name'); 
     if (loggedInUser === post.data.author.name) {  
         const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        editButton.classList.add('edit-button');
+        editButton.textContent = 'Edit Post';
+        editButton.classList.add('rounded-lg', 'bg-accent', 'text-white', 'py-2', 'px-3', 'ml-4', 'mt-3', 'font-accent', 'text-sm');
         editButton.onclick = function() {
             window.location.href = `/post/edit/index.html?id=${post.data.id}`; 
         };
     
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Delete Post';
+        deleteButton.classList.add('bg-customRed', 'rounded-lg', 'py-2', 'px-3', 'font-accent', 'ml-3', 'text-white', 'text-sm');
         deleteButton.onclick = function() {
             const confirmed = confirm('Are you sure you want to delete this post?');
             if (confirmed) {
@@ -122,6 +123,7 @@ export async function displaySinglePost(post) {
     }
 
     const commentSection = await displayCommentSection(post, post.data.id);
+    commentSection.classList.add('m-4')
     if (commentSection instanceof Node) {
         postElement.appendChild(commentSection);
     } else {
@@ -133,37 +135,40 @@ export async function displaySinglePost(post) {
 
 export async function displayCommentSection(post, postId) {
     const commentSection = document.createElement('div');
-    commentSection.classList.add('comments-section');
+    commentSection.classList.add('flex', 'flex-col');
 
     const commentTitle = document.createElement('h3');
     commentTitle.textContent = 'Comments';
+    commentTitle.classList.add('font-accent', 'font-semibold', 'my-3');
     commentSection.appendChild(commentTitle);
 
     if (Array.isArray(post.data.comments) && post.data.comments.length > 0) {
         post.data.comments.forEach(comment => {
             const commentElement = document.createElement('p');
+            commentElement.classList.add('font-post', 'text-sm', 'mb-5')
             commentElement.textContent = `${comment.author.name}: ${comment.body}`;
             commentSection.appendChild(commentElement);
         });
     } else {
         const noComments = document.createElement('p');
         noComments.textContent = 'No comments yet.';
+        noComments.classList.add('mb-4', 'font-post', 'text-sm');
         commentSection.appendChild(noComments);
     }
 
     const commentForm = document.createElement('form');
-    commentForm.classList.add('comment-form');
+    commentForm.classList.add();
     
     const commentInput = document.createElement('input');
     commentInput.type = 'text';
-    commentInput.placeholder = 'Write a comment...';
-    commentInput.classList.add('comment-input');
+    commentInput.placeholder = 'Add a comment';
+    commentInput.classList.add('border-2', 'border-accent', 'p-3', 'flex', 'flex-col', 'mb-2', 'text-sm', 'font-post', 'w-full');
     commentInput.required = true;
     
     const commentButton = document.createElement('button');
     commentButton.type = 'submit';
     commentButton.textContent = 'Post Comment';
-    commentButton.classList.add('comment-button');
+    commentButton.classList.add('bg-accent', 'py-3', 'px-4', 'my-2', 'text-white', 'rounded-lg', 'font-accent', 'text-sm');
 
     commentForm.appendChild(commentInput);
     commentForm.appendChild(commentButton);
@@ -296,30 +301,31 @@ function addPostsToHTML(posts) {
        
         const postLink = document.createElement('a');
         postLink.href = `post/index.html?id=${post.id}`; 
-        postLink.classList.add('post-link');
 
         const postElement = document.createElement('div');
-        postElement.classList.add('post');
+        postElement.classList.add('border-2', 'border-secondary', 'font-post', 'w-350', 'md:w-550', 'mb-5', 'shadow-xl');
 
-        const title = document.createElement('h2');
+        const title = document.createElement('h3');
         title.textContent = post.title;
+        title.classList.add('font-semibold', 'text-md', 'sm:text-lg', 'font-post', 'm-4', 'mb-2');
 
         const content = document.createElement('p');
-        content.textContent = post.body; 
-         
-         if (post.media && typeof post.media === 'object' && post.media.url) {
+        content.textContent = post.body;
+        content.classList.add('font-post', 'mb-4', 'mx-4', 'text-sm', 'sm:text-md'); 
+        
+        const username = document.createElement('h2');
+        username.textContent = `Posted by: ${post.author.name || 'Unknown'}`; 
+        username.classList.add('bg-secondary', 'font-accent', 'text-md', 'sm:text-lg', 'py-2', 'px-3');
+        postElement.appendChild(username);
+
+        if (post.media && typeof post.media === 'object' && post.media.url) {
             const image = document.createElement('img');
             image.src = post.media.url;
             image.alt = post.media.alt; 
-            image.classList.add('post-image');
+            image.classList.add('w-350', 'md:w-550');
             postElement.appendChild(image); 
         } 
-        
-        const username = document.createElement('p');
-        username.textContent = `Posted by: ${post.author.name || 'Unknown'}`; 
-        username.classList.add('post-username');
-        
-        postElement.appendChild(username);
+
         postElement.appendChild(title);
         postElement.appendChild(content);
 

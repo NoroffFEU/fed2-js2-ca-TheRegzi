@@ -1,4 +1,5 @@
-import "./css/style.css";
+
+import "./css/input.css";
 import router from "./js/router";
 import { initializeLogout } from './js/ui/global/logout';
 
