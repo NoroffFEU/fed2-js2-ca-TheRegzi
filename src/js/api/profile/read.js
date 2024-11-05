@@ -61,15 +61,17 @@ export async function fetchProfile() {
 
     const username = document.createElement('h2');
     username.textContent = profileData.name;
+    username.classList.add('text-lg', 'font-post', 'font-semibold', 'my-3', 'text-black');
 
     const content = document.createElement('p');
     content.textContent = profileData.bio;
+    content.classList.add('text-sm', 'font-post', 'mb-3');
 
     if (profileData.avatar && profileData.avatar.url) {
         const image = document.createElement('img');
         image.src = profileData.avatar.url;
         image.alt = profileData.avatar.alt || 'Profile Avatar';
-        image.classList.add('profile-image');
+        image.classList.add('rounded-full');
 
     profileElement.appendChild(image);
 
